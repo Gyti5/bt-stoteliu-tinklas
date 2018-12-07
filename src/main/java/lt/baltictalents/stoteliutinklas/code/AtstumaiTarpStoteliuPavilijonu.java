@@ -1,14 +1,13 @@
 package lt.baltictalents.stoteliutinklas.code;
 
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.List;
+import static java.util.stream.Collectors.toList;
 
 import lt.baltictalents.stoteliutinklas.data.beans.Station;
 import lt.baltictalents.stoteliutinklas.data.hardcode.HardCodedDb;
 
 public class AtstumaiTarpStoteliuPavilijonu {
-	
+		
 	private double atstumasMetrais;
 	private HardCodedDb stoteles = new HardCodedDb();
 	
@@ -17,22 +16,35 @@ public class AtstumaiTarpStoteliuPavilijonu {
 		tinkamosStoteles(atstumasMetrais);
 	}
 	
-	public String tinkamosStoteles(double atstumasMetrais) {
-		
-		List<Station> stoteliuSarasas = stoteles.getStoteles();
-		
-		
-		Map<String, Long> counting = stoteliuSarasas.stream().collect(
-                Collectors.groupingBy(Station::getName, Collectors.counting()));
-		
-		System.out.println(counting);
-		
-		
-		return null;
+	public double tinkamosStoteles(double atstumasMetrais) {
+		for ( Station a : stoteles.getStoteles()) {
+			List<Station> m = pavilijonaiPagalPavadinima(a.getName());
+			for (int i=0; i<m.size(); i++) {
+				for (int j=i+1; j<m.size(); j++) {
+					
+				}
+			}
+		}
+		return 0;
 	}
 	
-	public double atstumasTarpPavilijonu( double x1,  double y1,  double x2,  double y2 ) {
-		double distance = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+	public List<Station> pavilijonaiPagalPavadinima (String name){
+		final String pavilijonoPavadinimas = name;
+		List<Station> pavilijonaiPagalPavadinima = stoteles.getStoteles().stream()
+				.filter(stotele -> stotele.getName().contains(pavilijonoPavadinimas))
+				.collect(toList());
+		return pavilijonaiPagalPavadinima;
+	}
+	
+	public static double atstumasTarpTaskuMetrais( double x1,  double y1,  double x2,  double y2 ) {
+		final double R = 6378.1; // þemës spindulys kilometrais
+	    double latDistance = Math.toRadians(y2 - y1);
+	    double lonDistance = Math.toRadians(x2 - x1);
+	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+	            + Math.cos(Math.toRadians(y1)) * Math.cos(Math.toRadians(y2))
+	            * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+	    double distance = R * c * 1000; // keitimas á metrus
 		return distance;
 	}
 }

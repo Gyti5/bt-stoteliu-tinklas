@@ -14,11 +14,11 @@ import lt.baltictalents.stoteliutinklas.data.hardcode.HardCodedDb;
 public class Application {
 
 	public static void main(String[] args) throws FileNotFoundException {
-
+		String j =System.getProperty("user.dir");
+    	System.out.println(j);
    	    HardCodedDb b = new HardCodedDb();
     	@SuppressWarnings("unused")
-    	
-    	File file = new File("C:\\Users\\Gytis\\Desktop\\stotelesSQL\\src\\files\\stoteles.txt"); 
+    	File file = new File(j+"\\src\\main\\resources\\stoteles.txt"); 
     	Scanner sc = new Scanner(file, "UTF-8");
 		List<Station> SarasasIsFailo = new ArrayList<Station>(1260);
     	   while (sc.hasNextLine()) {
@@ -31,6 +31,7 @@ public class Application {
 //		gui Gui = new gui(b.getStoteles());  // uzkomentuot, jeigu nori skaityt is failo
 
     }
+	
 	
     
 }

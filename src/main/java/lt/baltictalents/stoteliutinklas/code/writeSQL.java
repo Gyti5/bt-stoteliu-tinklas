@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class writeSQL {
+	String j =System.getProperty("user.dir");
 
 	private final String url = "jdbc:sqlite:C:\\Users\\Gytis\\";
 	private final String table = "CREATE TABLE IF NOT EXISTS Stoteles (\n"

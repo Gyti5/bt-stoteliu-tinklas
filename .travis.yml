@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - openjdk8
+  
+before_install:
+  - chmod +x ./gradlew
+  - ls  -l gradlew
+  - ./gradlew wrapper -v
+  
+install:
+  - ./gradlew -v
+ 
+cache:
+  directories:
+    - $HOME/.m2

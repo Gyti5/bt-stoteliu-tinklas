@@ -7,7 +7,12 @@ import lt.baltictalents.stoteliutinklas.data.beans.Station;
 import lt.baltictalents.stoteliutinklas.data.hardcode.HardCodedDb;
 
 public class AtstumaiTarpStoteliuPavilijonu {
-		
+	
+	public static void main(String[] args) {
+		AtstumaiTarpStoteliuPavilijonu ms = new AtstumaiTarpStoteliuPavilijonu(30);
+		System.out.println(ms);
+	}
+	
 	private double atstumasMetrais;
 	private HardCodedDb stoteles = new HardCodedDb();
 	
